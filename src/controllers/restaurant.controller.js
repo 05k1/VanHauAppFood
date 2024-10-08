@@ -5,13 +5,13 @@ const model = initModels(sequelize);
 
 const likeRestaurant = async (req, res) => {
   try {
-    let { res_id } = req.params;
-    let { user_id } = req.body;
-    let restaurant = await model.restaurant.findByPk(res_id);
+    const { res_id } = req.params;
+    const { user_id } = req.body;
+    const restaurant = await model.restaurant.findByPk(res_id);
     if (!restaurant) {
       return res.status(404).json({ message: "Nha hang khong ton tai" });
     }
-    let data = await model.like_res.create({
+    const data = await model.like_res.create({
       res_id,
       user_id,
     });
@@ -23,13 +23,13 @@ const likeRestaurant = async (req, res) => {
 
 const unlikeRestaurant = async (req, res) => {
   try {
-    let { res_id } = req.params;
-    let { user_id } = req.body;
-    let restaurant = await model.restaurant.findByPk(res_id);
+    const { res_id } = req.params;
+    const { user_id } = req.body;
+    const restaurant = await model.restaurant.findByPk(res_id);
     if (!restaurant) {
       return res.status(404).json({ message: "Nha hang khong ton tai" });
     }
-    let data = await model.like_res.findOne({
+    const data = await model.like_res.findOne({
       where: {
         res_id,
         user_id,
@@ -47,12 +47,12 @@ const unlikeRestaurant = async (req, res) => {
 
 const getListUserLike = async (req, res) => {
   try {
-    let { res_id } = req.params;
-    let restaurant = await model.restaurant.findByPk(res_id);
+    const { res_id } = req.params;
+    const restaurant = await model.restaurant.findByPk(res_id);
     if (!restaurant) {
       return res.status(404).json({ message: "Nha hang khong ton tai" });
     }
-    let { count, rows } = await model.like_res.findAndCountAll({
+    const { count, rows } = await model.like_res.findAndCountAll({
       where: {
         res_id,
       },
@@ -80,13 +80,13 @@ const getListUserLike = async (req, res) => {
 
 const rate = async (req, res) => {
   try {
-    let { res_id } = req.params;
-    let { user_id, amount } = req.body;
-    let restaurant = await model.restaurant.findByPk(res_id);
+    const { res_id } = req.params;
+    const { user_id, amount } = req.body;
+    const restaurant = await model.restaurant.findByPk(res_id);
     if (!restaurant) {
       return res.status(404).json({ message: "Nha hang khong ton tai" });
     }
-    let data = await model.rate_res.create({
+    const data = await model.rate_res.create({
       res_id,
       user_id,
       amount,
@@ -99,12 +99,12 @@ const rate = async (req, res) => {
 
 const getListUserRate = async (req, res) => {
   try {
-    let { res_id } = req.params;
-    let restaurant = await model.restaurant.findByPk(res_id);
+    const { res_id } = req.params;
+    const restaurant = await model.restaurant.findByPk(res_id);
     if (!restaurant) {
       return res.status(404).json({ message: "Nha hang khong ton tai" });
     }
-    let { count, rows } = await model.rate_res.findAndCountAll({
+    const { count, rows } = await model.rate_res.findAndCountAll({
       where: {
         res_id,
       },

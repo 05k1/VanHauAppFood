@@ -5,12 +5,12 @@ const model = initModels(sequelize);
 
 const getListResLike = async (req, res) => {
   try {
-    let { user_id } = req.params;
-    let user = await model.users.findByPk(user_id);
+    const { user_id } = req.params;
+    const user = await model.users.findByPk(user_id);
     if (!user) {
       return res.status(404).json({ message: "User khong ton tai" });
     }
-    let { count, rows } = await model.like_res.findAndCountAll({
+    const { count, rows } = await model.like_res.findAndCountAll({
       where: {
         user_id,
       },
@@ -36,12 +36,12 @@ const getListResLike = async (req, res) => {
 
 const getListResRate = async (req, res) => {
   try {
-    let { user_id } = req.params;
-    let user = await model.users.findByPk(user_id);
+    const { user_id } = req.params;
+    const user = await model.users.findByPk(user_id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    let { count, rows } = await model.rate_res.findAndCountAll({
+    const { count, rows } = await model.rate_res.findAndCountAll({
       where: {
         user_id,
       },
